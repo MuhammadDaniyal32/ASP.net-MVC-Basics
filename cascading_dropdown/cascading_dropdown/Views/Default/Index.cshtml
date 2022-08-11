@@ -1,0 +1,56 @@
+﻿@model cascading_dropdown.Models.Class1
+@{
+    ViewBag.Title = "Index";
+}
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<h2>Index</h2>
+<div class="container">
+    <br/>
+    @using (Html.BeginForm("Index", "Default", FormMethod.Post))
+    {
+        <table>
+            <tr>
+                <td>
+                    @Html.DropDownListFor(x=>x.des_Name,Model.des_Name,"---Select---",
+                   new {@class="form-control",@id="dis_drop"})
+                </td>
+                <td>
+                    @Html.DropDownListFor(x => x.doc_Name,new List<SelectListItem>(), "---Select---",
+                   new { @class = "form-control", @id = "doc_drop" })
+                </td>
+                <td>
+                    <input type="submit" value="Get Appointment" class="btn btn-block btn-info"
+                           onclick="location.href='@Url.Action("Index","Default")'"/>
+                </td>
+            </tr>
+        </table>
+    }
+
+</div>
+<script type="text/javascript">
+    $(document).ready(function()
+    {
+        $('#dis_drop').change(function()
+        {
+            $.ajax({
+                type: "post",
+                url: "/Default/Index",
+                data: { dis_id: $('#dis_drop').val() },
+                datatype: "json",
+                traditional: true,
+                success:function(data)
+                {
+                    var doctor = "<select id='ddlproduct'>";
+                    doctor=doctor+'<option value="">--Select--</option>';
+                    for (var i = 0; i <data.length; i++) {
+                        doctor=doctor+'<option value=>'+data[i].Value+'>'+data[i].Text+'</option>';
+                    }
+                    doctor=doctor+'</select>';
+                    $('#doc_drop').html(doctor);
+                }
+
+            });
+
+        });
+    });
+</script>

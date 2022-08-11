@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Asp_DaniyalModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="disease_tbl">
+          <Key>
+            <PropertyRef Name="des_ID" />
+          </Key>
+          <Property Name="des_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="des_name" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Docter_tbl">
+          <Key>
+            <PropertyRef Name="doc_ID" />
+          </Key>
+          <Property Name="doc_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="doc_Name" Type="varchar" MaxLength="20" />
+          <Property Name="doc_Spec" Type="varchar" MaxLength="20" />
+          <Property Name="des_fk_ID" Type="int" />
+        </EntityType>
+        <Association Name="FK_Docter_tbl_disease_tbl">
+          <End Role="disease_tbl" Type="Self.disease_tbl" Multiplicity="0..1" />
+          <End Role="Docter_tbl" Type="Self.Docter_tbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="disease_tbl">
+              <PropertyRef Name="des_ID" />
+            </Principal>
+            <Dependent Role="Docter_tbl">
+              <PropertyRef Name="des_fk_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Asp_DaniyalModelStoreContainer">
+          <EntitySet Name="disease_tbl" EntityType="Self.disease_tbl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Docter_tbl" EntityType="Self.Docter_tbl" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Docter_tbl_disease_tbl" Association="Self.FK_Docter_tbl_disease_tbl">
+            <End Role="disease_tbl" EntitySet="disease_tbl" />
+            <End Role="Docter_tbl" EntitySet="Docter_tbl" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Asp_DaniyalModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="disease_tbl">
+          <Key>
+            <PropertyRef Name="des_ID" />
+          </Key>
+          <Property Name="des_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="des_name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Docter_tbl" Relationship="Self.FK_Docter_tbl_disease_tbl" FromRole="disease_tbl" ToRole="Docter_tbl" />
+        </EntityType>
+        <EntityType Name="Docter_tbl">
+          <Key>
+            <PropertyRef Name="doc_ID" />
+          </Key>
+          <Property Name="doc_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="doc_Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="doc_Spec" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="des_fk_ID" Type="Int32" />
+          <NavigationProperty Name="disease_tbl" Relationship="Self.FK_Docter_tbl_disease_tbl" FromRole="Docter_tbl" ToRole="disease_tbl" />
+        </EntityType>
+        <Association Name="FK_Docter_tbl_disease_tbl">
+          <End Role="disease_tbl" Type="Self.disease_tbl" Multiplicity="0..1" />
+          <End Role="Docter_tbl" Type="Self.Docter_tbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="disease_tbl">
+              <PropertyRef Name="des_ID" />
+            </Principal>
+            <Dependent Role="Docter_tbl">
+              <PropertyRef Name="des_fk_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Asp_DaniyalEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="disease_tbl" EntityType="Self.disease_tbl" />
+          <EntitySet Name="Docter_tbl" EntityType="Self.Docter_tbl" />
+          <AssociationSet Name="FK_Docter_tbl_disease_tbl" Association="Self.FK_Docter_tbl_disease_tbl">
+            <End Role="disease_tbl" EntitySet="disease_tbl" />
+            <End Role="Docter_tbl" EntitySet="Docter_tbl" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Asp_DaniyalModelStoreContainer" CdmEntityContainer="Asp_DaniyalEntities">
+          <EntitySetMapping Name="disease_tbl">
+            <EntityTypeMapping TypeName="Asp_DaniyalModel.disease_tbl">
+              <MappingFragment StoreEntitySet="disease_tbl">
+                <ScalarProperty Name="des_ID" ColumnName="des_ID" />
+                <ScalarProperty Name="des_name" ColumnName="des_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Docter_tbl">
+            <EntityTypeMapping TypeName="Asp_DaniyalModel.Docter_tbl">
+              <MappingFragment StoreEntitySet="Docter_tbl">
+                <ScalarProperty Name="doc_ID" ColumnName="doc_ID" />
+                <ScalarProperty Name="doc_Name" ColumnName="doc_Name" />
+                <ScalarProperty Name="doc_Spec" ColumnName="doc_Spec" />
+                <ScalarProperty Name="des_fk_ID" ColumnName="des_fk_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

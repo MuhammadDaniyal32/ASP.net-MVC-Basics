@@ -1,0 +1,105 @@
+﻿@model IEnumerable<Mvc_crud.Customer_tbl>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<html>
+<body>
+    <table id="cust_tbl" class="table table-responsive table-hover">
+        <tr>
+            <th>Cust_id</th>
+            <th>Name</th>
+            <th>Country</th>
+            <th></th>
+        </tr>
+        @foreach (Customer_tbl cust in Model)
+        {
+            <tr>
+                <td class="ID">
+                    <span>@cust.ID</span>
+                </td>
+                <td class="Name">
+                    <span>@cust.Name</span>
+                    <input type="text" value="@cust.Name" style="display:none" />
+                </td>
+                <td class="Country">
+                    <span>@cust.Country</span>
+                    <input type="text" value="@cust.Country" style="display:none" />
+                </td>
+
+                <td>
+                    <a class="Edit" href="javascript:;">Edit</a>
+                    <a class="update" href="javascript:;" style="display:none">Update</a>
+                    <a class="Cancel" href="javascript:;" style="display:none">Cancel</a>
+                    <a class="Delete" href="javascript:;">Delete</a>
+                </td>
+            </tr>
+        }
+    </table>
+
+    <table class="table table-responsive table-hover">
+        <tr>
+            <td>
+                Name<br />
+                <input type="text" id="txtname" />
+            </td>
+            <td>
+                Country<br />
+                <input type="text" id="txtcountry" />
+            </td>
+            <td>
+                <br />
+                <input type="button" id="btnadd" value="Add" />
+            </td>
+        </tr>
+    </table>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript" src="http//ajax.googleapis.com/ajax/libs/json2/20110223/json2.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            if ($("#cust_tbl tr").length > 2) {
+                $("#cust_tbl tr:eq(1)").remove();
+            }
+            else {
+                var row = $("#cust_tbl tr:last-child");
+                row.find(".Edit").hide();
+                row.find(".Delete").hide();
+                row.find("span").html('&nbsp');
+            }
+        });
+
+        function AppendRow(row, ID, Name, Country) {
+            $(".ID", row).find("span").html(ID);
+
+            $(".Name", row).find("span").html(Name);
+            $(".Country", row).find("input").val(Country);
+
+            row.find(".Edit").show();
+            row.find(".Delete").show();
+
+            $("#cust_tbl").append(row);
+        };
+        $("body").on(""click","#btnadd",function(){
+        var txtname=$("#txtname");
+        var txtcountry=$("#txtcountry");
+        $.ajax({
+        type:"POST",
+        url:"/Default/Index",
+        data:'{name:"'+txtname.val()+'",country:"'+txtcountry.val()+'"}',
+        contentType:"application/json; charset=utf-8",
+        dataType:"json"
+        success: function(r){
+        var row =$("#cust_tbl tr:last-child");
+        if($("#cust_tbl tr:last-child span").eq(0).html() !="")
+        }
+        });
+        });
+
+        $
+
+    </script>
+
+</body>
+</html>

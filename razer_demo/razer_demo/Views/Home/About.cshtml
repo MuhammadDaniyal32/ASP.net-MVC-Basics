@@ -1,0 +1,36 @@
+﻿@{
+    ViewBag.Title = "About";
+}
+<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>
+
+<p>Use this area to provide additional information.</p>
+
+<html>
+<body>
+
+    <table border="1">
+        <tr>
+            <th width="100px">Name</th>
+            <th width="100px">Value</th>
+        </tr>
+        <tr>
+            <th>Day</th>
+            <th>@DateTime.Now.Day</th>
+        </tr>
+        <tr>
+            <th>Hour</th>
+            <th>@DateTime.Now.Hour</th>
+        </tr>
+        <tr>
+            <th>Minute</th>
+            <th>@DateTime.Now.Minute</th>
+        </tr>
+        <tr>
+            <th>Second</th>
+            <th>@DateTime.Now.Second</th>
+        </tr>
+    </table>
+
+</body>
+</html>

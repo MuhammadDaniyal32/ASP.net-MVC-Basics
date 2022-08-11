@@ -1,0 +1,28 @@
+﻿@{
+    ViewBag.Title = "About";
+}
+<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>
+
+<p>Use this area to provide additional information.</p>
+<h1>Cities in Viewdata in list</h1>
+<ul>
+    @{
+        foreach (string cities in (List<string>)ViewData["Cities"])
+        {
+            <li>@cities<br /></li>
+        }
+    }
+</ul>
+
+<h2>Cities in viewData in table</h2>
+<table class="table table-striped">
+    <tr>
+        @{
+            foreach (string cities in (List<string>)ViewData["Cities"])
+            {
+                <td>@cities<br /></td>
+            }
+        }
+    </tr>
+</table>

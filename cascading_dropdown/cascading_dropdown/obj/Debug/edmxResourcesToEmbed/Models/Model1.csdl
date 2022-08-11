@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Asp_DaniyalModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="disease_tbl">
+    <Key>
+      <PropertyRef Name="des_ID" />
+    </Key>
+    <Property Name="des_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="des_name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Docter_tbl" Relationship="Self.FK_Docter_tbl_disease_tbl" FromRole="disease_tbl" ToRole="Docter_tbl" />
+  </EntityType>
+  <EntityType Name="Docter_tbl">
+    <Key>
+      <PropertyRef Name="doc_ID" />
+    </Key>
+    <Property Name="doc_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="doc_Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="doc_Spec" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="des_fk_ID" Type="Int32" />
+    <NavigationProperty Name="disease_tbl" Relationship="Self.FK_Docter_tbl_disease_tbl" FromRole="Docter_tbl" ToRole="disease_tbl" />
+  </EntityType>
+  <Association Name="FK_Docter_tbl_disease_tbl">
+    <End Role="disease_tbl" Type="Self.disease_tbl" Multiplicity="0..1" />
+    <End Role="Docter_tbl" Type="Self.Docter_tbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="disease_tbl">
+        <PropertyRef Name="des_ID" />
+      </Principal>
+      <Dependent Role="Docter_tbl">
+        <PropertyRef Name="des_fk_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Asp_DaniyalEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="disease_tbl" EntityType="Self.disease_tbl" />
+    <EntitySet Name="Docter_tbl" EntityType="Self.Docter_tbl" />
+    <AssociationSet Name="FK_Docter_tbl_disease_tbl" Association="Self.FK_Docter_tbl_disease_tbl">
+      <End Role="disease_tbl" EntitySet="disease_tbl" />
+      <End Role="Docter_tbl" EntitySet="Docter_tbl" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

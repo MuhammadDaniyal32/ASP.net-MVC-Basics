@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Asp_DaniyalModelStoreContainer" CdmEntityContainer="Asp_DaniyalEntities">
+    <EntitySetMapping Name="disease_tbl">
+      <EntityTypeMapping TypeName="Asp_DaniyalModel.disease_tbl">
+        <MappingFragment StoreEntitySet="disease_tbl">
+          <ScalarProperty Name="des_ID" ColumnName="des_ID" />
+          <ScalarProperty Name="des_name" ColumnName="des_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Docter_tbl">
+      <EntityTypeMapping TypeName="Asp_DaniyalModel.Docter_tbl">
+        <MappingFragment StoreEntitySet="Docter_tbl">
+          <ScalarProperty Name="doc_ID" ColumnName="doc_ID" />
+          <ScalarProperty Name="doc_Name" ColumnName="doc_Name" />
+          <ScalarProperty Name="doc_Spec" ColumnName="doc_Spec" />
+          <ScalarProperty Name="des_fk_ID" ColumnName="des_fk_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

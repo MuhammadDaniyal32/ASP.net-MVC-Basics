@@ -1,0 +1,26 @@
+﻿@model Hyperlink_using_actionlink.Models.Class1
+@{
+    ViewBag.Title = "Detail";
+}
+
+<h2>Detail</h2>
+
+<div class="container">
+    <h3>Employee Details</h3>
+    <table>
+        <tr>
+            <td>Employee Name</td>
+            <td>@Model.Emp_name</td>
+        </tr>
+
+        <tr>
+            <td>Department Name</td>
+            <td>@Model.Dep_name</td>
+        </tr>
+
+        <tr>
+            <td>Department location</td>
+            <td>@Model.Address</td>
+        </tr>
+    </table>
+</div>

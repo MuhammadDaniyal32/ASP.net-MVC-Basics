@@ -1,0 +1,19 @@
+﻿@model IEnumerable<Hyperlink_using_actionlink.Models.Class1>
+@{
+    ViewBag.Title = "Index";
+}
+<h2>Index</h2>
+<div class="container">
+    @if (Model != null)
+    {
+        <ul class="list-group">
+            @foreach (var item in Model)
+            {
+                <li class="list-group-item">
+                    <a class="btn-link alert-link" href="/Default/Detail?Emp_id=@item.Emp_id">@item.Emp_name</a>
+                </li>
+            }
+        </ul>
+    }
+
+</div>

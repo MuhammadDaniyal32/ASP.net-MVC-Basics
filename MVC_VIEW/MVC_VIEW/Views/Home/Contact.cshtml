@@ -1,0 +1,39 @@
+﻿@{
+    ViewBag.Title = "Contact";
+}
+<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>
+
+<address>
+    One Microsoft Way<br />
+    Redmond, WA 98052-6399<br />
+    <abbr title="Phone">P:</abbr>
+    425.555.0100
+</address>
+
+<address>
+    <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
+    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
+</address>
+
+<h1>Cities in viewbag in list</h1>
+<ul>
+    @{
+        foreach (string cities in ViewBag.Cities)
+        {
+            <li>@cities<br /></li>
+        }
+    }
+</ul>
+
+<h2>Cities in viewbag in table</h2>
+<table class="table table-striped">
+    <tr>
+        @{
+            foreach (string cities in ViewBag.Cities)
+            {
+                <td>@cities<br/></td>
+            }
+        }
+    </tr>
+</table>

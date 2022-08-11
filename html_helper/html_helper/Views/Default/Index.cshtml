@@ -1,0 +1,30 @@
+﻿@model html_helper.Models.Class1
+@{
+    ViewBag.Title = "Index";
+}
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+<h1 class="text-center">Html Helper</h1>
+<br />
+<br />
+<div class="container col-lg-offset-4">
+    
+    @using (Html.BeginForm("saverecord","Default",FormMethod.Post))
+    {
+        @Html.DropDownListFor(model => model.Dep_ID,ViewBag.deplist as SelectList,"---SelectDepList---",new {@class ="form-control"})
+        @Html.ValidationMessageFor(model => model.Dep_ID,"",new {@class="danger"})
+        <br />
+        @Html.TextBoxFor(model => model.Emp_name,new { @class= "form-control",@placeholder="Name"})
+        @Html.ValidationMessageFor(model => model.Emp_name, "", new { @class = "danger" })
+        <br />
+        @Html.TextBoxFor(model => model.Address, new { @class = "form-control", @placeholder = "Address" })
+        @Html.ValidationMessageFor(model => model.Address, "", new { @class = "danger" })
+        <br />
+
+        <input type="submit" value="Submit" class="btn btn-block btn-success"/>
+    }
+
+</div>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
